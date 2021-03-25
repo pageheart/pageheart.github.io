@@ -1,8 +1,59 @@
 <!DOCTYPE>
 <html>
   <head>
+    <style>
+    .header {
+        position:fixed;
+        top:0px;
+        left:0px;
+        width:100%;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        background-color: black;
+        height: 50px;
+    }
+    nav { 
+        margin-left:50px;
+    }
+    nav a {
+        color: ghostwhite;
+        margin-right:10px;
+    }
+    </style>
+    <script type="text/javascript">
+    var menu = [
+        {                
+            title : "first", visible:true
+        },
+        {                
+            title : "second", visible:true
+        }
+    ]
+
+    var menuSet = () => {
+        console.log("menuSet Call");
+        menu.forEach(
+            e => {
+                if(e.visible) {
+                    let aTag = document.createElement("a");
+                    let aNode = document.createTextNode(e.title);
+                    aTag.appendChild(aNode);
+                    document.querySelectorAll("header nav")[0].appendChild(aTag);
+                }
+            }
+        )
+    }
+    window.addEventListener('DOMContentLoaded', ()=>menuSet());
+
+    </script>
   </head>
   <body>
-    <p style="color:yellow">HTML</p>
+    <div class="header">
+        <header>
+            <nav></nav>
+        </header>
+    </div>
   </body>
 </html>

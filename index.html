@@ -2,24 +2,120 @@
 <html>
   <head>
     <style>
+    body {
+        margin:0px;
+    }
     .header {
-        position:fixed;
-        top:0px;
-        left:0px;
-        width:100%;
+        position:relative;
     }
     header {
+        width:100%;
         display: flex;
         align-items: center;
         background-color: black;
         height: 50px;
     }
     nav { 
-        margin-left:50px;
+        margin-left:100px;
     }
     nav a {
         color: ghostwhite;
         margin-right:10px;
+    }
+    button {
+        overflow: visible;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+    header .mobile-menu {
+        position: absolute;
+        top: 8px;
+        left: 33px;
+        z-index: 500;
+        width: 40px;
+        height: 40px;
+        outline: none;
+    }
+    header .mobile-menu span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 26px;
+        height: 2px;
+        margin: -2px 0 0 -13px;
+        background-color: #fff;
+        text-indent: -999em;
+    }
+    header .mobile-menu:before,
+    header .mobile-menu:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 26px;
+        height: 2px;
+        margin-left: -13px;
+        background-color: #fff;
+    }
+    header .mobile-menu:before {
+        margin-top: -9px;
+    }
+    header .mobile-menu:after {
+        margin-top: 5px;
+    }
+    header .mobile-menu.on {
+        position: fixed;
+    }
+    header .mobile-menu.on span {
+        display: none;
+    }
+    header .mobile-menu.on:before,
+    header .mobile-menu.on:after {
+        margin-top: -2px;
+    }
+    header .mobile-menu.on:before {
+        transform: rotate(-45deg);
+    }
+    header .mobile-menu.on:after {
+        transform: rotate(45deg);
+    }
+    header .menu.on {
+        left: 0;
+    }
+    header .menu {
+        position: fixed;
+        top: 50px;
+        left: -348px;
+        z-index: 400;
+        width: 348px;
+        height: 100%;
+        padding: 94px 40px 189px;
+        background-color: #000;
+        box-sizing: border-box;
+        transition: left .5s ease-in-out;
+    }
+
+    #dimmed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 300;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.43);
+    }
+
+    /* Media Screen - Mobie */
+    @media screen and (max-width:767px) {
+        #eader .mobile-menu {
+            top: 10px;
+            left: 11px;
+        }
+        header .menu {
+            padding: 84px 20px 189px;
+        }
     }
     </style>
     <script type="text/javascript">
@@ -33,7 +129,6 @@
     ]
 
     var menuSet = () => {
-        console.log("menuSet Call");
         menu.forEach(
             e => {
                 if(e.visible) {
@@ -44,16 +139,51 @@
                 }
             }
         )
+
+        settingEvnt();
+    }
+
+    const divTag = document.createElement("div");
+    divTag.id = "dimmed";
+
+    var settingEvnt = () => {
+        let mobileMenuClass = document.querySelector(".mobile-menu");
+        let menuClass = document.querySelector(".menu");
+        let body = document.querySelector("body");
+        mobileMenuClass.onclick = () => {
+            mobileMenuClass.classList.forEach(
+                e=> {
+                    if(e == "on") {
+                        body.removeChild(divTag);
+                        mobileMenuClass.classList.remove(e);
+                        menuClass.classList.remove(e);
+                    }
+                    else {
+                        body.appendChild(divTag);
+                        mobileMenuClass.classList.add("on");
+                        menuClass.classList.add("on");
+                    }
+                }
+            );
+        }
     }
     window.addEventListener('DOMContentLoaded', ()=>menuSet());
+
+    if(window.console!=undefined){
+        setTimeout(console.log.bind(console,"%cWELCOME","font:8em Arial;color:#EC6521;font-weight:bold"),0);
+        setTimeout(console.log.bind(console,"%cpageheart.github.io","font:2em sans-serif;color:#333;"),0);
+    }
 
     </script>
   </head>
   <body>
     <div class="header">
         <header>
+            <button type="button" class="mobile-menu"><span>메뉴</span></button>
             <nav></nav>
+            <div class="menu">
+            </div>
         </header>
     </div>
   </body>
-</html>
+</html> 

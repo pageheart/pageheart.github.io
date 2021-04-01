@@ -13,7 +13,7 @@
         display: flex;
         align-items: center;
         background-color: black;
-        height: 50px;
+        height: 75px;
     }
     nav { 
         margin-left: 100px;
@@ -32,7 +32,6 @@
     }
     header .mobile-menu {
         position: absolute;
-        top: 8px;
         left: 33px;
         z-index: 500;
         width: 40px;
@@ -98,6 +97,9 @@
         box-sizing: border-box;
         transition: left .5s ease-in-out;
     }
+    button:focus {
+        outline: auto;
+    }
 
     #dimmed {
         position: fixed;
@@ -136,6 +138,7 @@
                 if(e.visible) {
                     let aTag = document.createElement("a");
                     let aNode = document.createTextNode(e.title);
+                    aTag.setAttribute("href","#n");
                     aTag.addEventListener('click',() => location.href = e.link);
                     aTag.appendChild(aNode);
                     document.querySelectorAll("header nav")[0].appendChild(aTag);

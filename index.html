@@ -136,7 +136,7 @@
                 if(e.visible) {
                     let aTag = document.createElement("a");
                     let aNode = document.createTextNode(e.title);
-                    aTag.setAttribute("href", e.link);
+                    aTag.addEventListener('click',() => location.href = e.link);
                     aTag.appendChild(aNode);
                     document.querySelectorAll("header nav")[0].appendChild(aTag);
                 }
@@ -185,7 +185,7 @@
             <button type="button" class="mobile-menu"><span>메뉴</span></button>
             <nav></nav>
             <div class="menu">
-              방문해주셔서 감사합니다. 'ㅡ'/
+                방문해주셔서 감사합니다. 'ㅡ'/
             </div>
         </header>
     </div>

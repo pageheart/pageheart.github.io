@@ -121,10 +121,10 @@
     <script type="text/javascript">
     var menu = [
         {                
-            title : "first", visible:true
+            title : "naver", visible:true, link:"https://blog.naver.com/skdmldl"
         },
         {                
-            title : "second", visible:true
+            title : "tistory", visible:true, link:"https://pageheart.tistory.com/"
         }
     ]
 
@@ -134,6 +134,7 @@
                 if(e.visible) {
                     let aTag = document.createElement("a");
                     let aNode = document.createTextNode(e.title);
+                    aTag.setAttribute("href", e.link);
                     aTag.appendChild(aNode);
                     document.querySelectorAll("header nav")[0].appendChild(aTag);
                 }

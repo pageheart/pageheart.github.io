@@ -1,6 +1,7 @@
 <!DOCTYPE>
 <html>
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script>
     <style>
     body {
         margin: 0px;
@@ -123,6 +124,7 @@
     }
     </style>
     <script type="text/javascript">
+    console.log('RxJS included?', !!Rx);
     var menu = [
         {                
             title : "naver", visible:true, link:"https://blog.naver.com/skdmldl"

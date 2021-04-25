@@ -27,9 +27,6 @@ function saybox_nowStatic() {
     saybox_moveMessage()
     //기본값 210
     toastInfo.toast_obj.style.left = toastInfo.toast_ad_width;
-    if(toastInfo.toast_fload == false) {
-        toastInfo.toast_obj.style.top = document.body.scrollTop + document.body.clientHeight - poplocheight;
-    }
 }
 
 function saybox_moveMessage() {
@@ -39,12 +36,7 @@ function saybox_moveMessage() {
         toastInfo.saybox_openTimer = setTimeout("saybox_moveMessage()",toastInfo.toast_sliding_time);
     } else {
         clearTimeout(toastInfo.saybox_openTimer);
-        saybox_loadChk();
     }
-}
- 
-function saybox_loadChk() {
-    if(toastInfo.toast_fload == true) toastInfo.toast_fload = false;
 }
 
 toastInfo.saybox_openTimer = setTimeout("saybox_init_layout()",toastInfo.toast_open_time);

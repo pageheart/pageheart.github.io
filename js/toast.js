@@ -5,7 +5,7 @@ let toastInfo = {
     toast_close_time:5000, //배너 종료 시간
     toast_sel:1,
     toast_fload:true,
-    toast_obj:document.getElementById('banner'),
+    toast_obj:undefined,
     saybox_openTimer:undefined
 }
 
@@ -16,6 +16,7 @@ function saybox_messageClose() {
 }
 
 function saybox_init_layout() {
+    toastInfo.toast_obj = document.getElementById('banner');
     toastInfo.toast_obj.style.display = '';
     poplocheight = toastInfo.toast_obj.offsetHeight;
     //setInterval("saybox_nowStatic()",toastInfo.toast_sliding_time);
@@ -39,4 +40,4 @@ function saybox_moveMessage() {
     }
 }
 
-toastInfo.saybox_openTimer = setTimeout("saybox_init_layout()",toastInfo.toast_open_time);
+window.addEventListener('DOMContentLoaded', ()=>toastInfo.saybox_openTimer = setTimeout("saybox_init_layout()",toastInfo.toast_open_time));

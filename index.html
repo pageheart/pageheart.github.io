@@ -3,6 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script>
+    <script src="https://github.com/BorisMoore/jquery-tmpl/blob/master/jquery.tmpl.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     <script type="text/javascript">
     console.log('RxJS included?', !!Rx);
@@ -62,6 +63,16 @@
         setTimeout(console.log.bind(console,"%cWELCOME","font:8em Arial;color:#EC6521;font-weight:bold"),0);
         setTimeout(console.log.bind(console,"%cpageheart.github.io","font:2em sans-serif;color:#333;"),0);
     }
+      
+    $(document).ready(() => {
+      var data = [
+          {"name" : "loudon23", "year" : "2010"},
+          {"name" : "loudon24", "year" : "2011"}
+     ]; 
+
+      // inline templates
+      $("#item").tmpl(data).appendTo("#test");
+    });
 
     </script>
     <script language="javascript" src="./js/toast.js"></script>
@@ -90,6 +101,9 @@
         </tr>
        </table>
       </div>
+    </div>
+    <div>
+       <script id="item" type="text/html"><li><em>${name}</em> (${year})</li></script>
     </div>
   </body>
 </html> 

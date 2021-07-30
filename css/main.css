@@ -106,11 +106,13 @@ button:focus {
     border-bottom: 1px solid #ebebeb;
 }
 
-.nav_list {
-    float: left;
-}
 .nav_list li {
+    float: left;
     list-style:none;
+    margin-right: 5px;
+}
+.nav_list li:hover {
+    color:#f0f;
 }
 
 #dimmed {

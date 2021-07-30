@@ -109,7 +109,7 @@ button:focus {
 .nav_list li {
     float: left;
     list-style:none;
-    margin-right: 5px;
+    margin: 10px 10px 10px 0px;
 }
 .nav_list li:hover {
     color:#f0f;

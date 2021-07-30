@@ -79,6 +79,34 @@
       // inline templates
       $("#item").tmpl(data).appendTo("#test");
     });
+      
+    function fetchUser() {
+      var url = './json/userInfo';
+      return fetch(url).then(function(response) {
+        return response.json();
+      });
+    }
+
+    function fetchTodo() {
+      var url = './json/userInfo';
+      return fetch(url).then(function(response) {
+        return response.json();
+      });
+    }
+
+    async function logTodoTitle() {
+      try {
+        var user = await fetchUser();
+        if (user.id === 1) {
+          var todo = await fetchTodo();
+          console.log(todo.name);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    logTodoTitle()
 
     </script>
     <script language="javascript" src="./js/toast.js"></script>

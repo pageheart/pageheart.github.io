@@ -9,6 +9,6 @@
     "no": 2,
     "name": "종이2",
     "explanation": "paper2",
-    "show": true
+    "show": false
   }
 ]

@@ -69,17 +69,6 @@
         setTimeout(console.log.bind(console,"%cpageheart.github.io","font:2em sans-serif;color:#333;"),0);
     }
       
-    $(document).ready(() => {
-      console.log("jquery document ready");
-      var data = [
-          {"name" : "templite", "year" : "2021"},
-          {"name" : "testArea", "year" : "2022"}
-     ]; 
-
-      // inline templates
-      $("#item").tmpl(data).appendTo("#test");
-    });
-      
     function fetchUser() {
       var url = './json/userInfo';
       return fetch(url).then(function(response) {
@@ -87,26 +76,19 @@
       });
     }
 
-    function fetchTodo() {
-      var url = './json/userInfo';
-      return fetch(url).then(function(response) {
-        return response.json();
-      });
-    }
-
-    async function logTodoTitle() {
+    async function setUser() {
       try {
         var user = await fetchUser();
-        if (user.id === 1) {
-          var todo = await fetchTodo();
-          console.log(todo.name);
-        }
+        console.log(user);
+        $("#item").tmpl(user).appendTo("#test");
       } catch (error) {
         console.log(error);
       }
     }
 
-    logTodoTitle()
+    $(document).ready(function() {
+      setUser();
+    });
 
     </script>
     <script language="javascript" src="./js/toast.js"></script>
@@ -138,7 +120,11 @@
     </div>
     <div>
       <ul id="test" class="title_header nav_list">
-      <script id="item" type="text/html"><li><em>${name}</em> (${year})</li></script>
+      <script id="item" type="text/html">
+        {{if show}}
+          <li><em>${name}</em> (${explanation})</li>
+        {{/if}}
+      </script>
       </ul>
     </div>
   </body>

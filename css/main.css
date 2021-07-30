@@ -97,6 +97,10 @@ button:focus {
     outline: auto;
 }
 
+p {
+    margin-left: 10px;
+}
+
 #dimmed {
     position: fixed;
     top: 0;

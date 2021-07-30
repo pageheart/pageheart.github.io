@@ -97,17 +97,20 @@ button:focus {
     outline: auto;
 }
 
-p {
-    margin-left: 10px;
-}
-
-.titleHeader {
+.title_header {
     position: relative;
     overflow: hidden;
     max-width: 1080px;
     margin: 0 auto 30px;
  //   padding: 57px 0 15px;
     border-bottom: 1px solid #ebebeb;
+}
+
+.nav_list {
+    float: left;
+}
+.nav_list li {
+    list-style:none;
 }
 
 #dimmed {

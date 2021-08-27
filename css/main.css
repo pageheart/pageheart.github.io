@@ -115,7 +115,7 @@ button:focus {
     color:#f0f;
 }
 
-div {
+.vueArea div {
     margin: 5px 0px 5px 5px;
 }
 

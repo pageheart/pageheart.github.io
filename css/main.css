@@ -11,6 +11,9 @@ header {
     background-color: black;
     height: 75px;
 }
+a {
+    text-decoration: none;
+}
 nav { 
     margin-left: 100px;
 }

@@ -119,6 +119,19 @@ button:focus {
     margin: 10px 0px 0px 10px;
 }
 
+.transitionArea .btn_hover {
+    display: flex;
+    align-items: center;
+    width: 115px;
+    height: 40px;
+    padding-left: 19px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
 .transitionArea .btn_hover:hover span {
     top: -3px;
 }

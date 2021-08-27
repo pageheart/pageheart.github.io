@@ -136,6 +136,9 @@ button:focus {
     top: -3px;
 }
 
+.transitionArea .btn_hover.red {
+    background:#ff2e62;
+}
 .transitionArea .btn_hover span {
     position: relative;
     top:0;

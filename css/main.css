@@ -115,6 +115,10 @@ button:focus {
     color:#f0f;
 }
 
+div {
+    margin: 5px 0px 5px 5px;
+}
+
 #dimmed {
     position: fixed;
     top: 0;

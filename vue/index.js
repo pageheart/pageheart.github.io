@@ -1,7 +1,7 @@
 var app = new Vue({ 
     el: '#app',
     data: {
-        message: 'Hello Vue!'
+        message: '메세지 출력'
     }
 });
 
@@ -33,7 +33,7 @@ var app4 = new Vue({
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: '리버스?'
   },
   methods: {
     reverseMessage: function () {
@@ -45,6 +45,6 @@ var app5 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: '텍스트 연동'
   }
 })

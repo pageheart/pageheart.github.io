@@ -141,6 +141,16 @@ button:focus {
     top:0;
     transition: top .1s ease;
 }
+.transitionArea .btn_hover span:nth-of-type(2) {
+    trnsition-delay: .05s;
+}
+.transitionArea .btn_hover span:nth-of-type(3) {
+    trnsition-delay: .075s;
+}
+.transitionArea .btn_hover span:nth-of-type(4) {
+    trnsition-delay: .1s;
+}
+
 
 #dimmed {
     position: fixed;

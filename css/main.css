@@ -119,6 +119,16 @@ button:focus {
     margin: 10px 0px 0px 10px;
 }
 
+.transitionArea .btn_hover:hover span {
+    top: -3px;
+}
+
+.transitionArea .btn_hover span {
+    position: relative;
+    top:0;
+    transition: top .1s ease;
+}
+
 #dimmed {
     position: fixed;
     top: 0;

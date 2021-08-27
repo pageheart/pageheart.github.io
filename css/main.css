@@ -124,7 +124,7 @@ button:focus {
 
 .transitionArea {
     max-width: 1080px;
-    margin: 0 auto 30px;
+    margin: 0 auto 10px;
 }
 
 .transitionArea .btn_hover {

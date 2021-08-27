@@ -122,6 +122,11 @@ button:focus {
     margin: 10px 0px 0px 10px;
 }
 
+.transitionArea {
+    max-width: 1080px;
+    margin: 0 auto 30px;
+}
+
 .transitionArea .btn_hover {
     display: flex;
     align-items: center;

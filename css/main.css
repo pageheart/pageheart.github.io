@@ -150,16 +150,16 @@ button:focus {
 .transitionArea .btn_hover span {
     position: relative;
     top:0;
-    transition: top .1s ease;
+    transition: top .15s ease;
 }
 .transitionArea .btn_hover span:nth-of-type(2) {
     transition-delay: .05s;
 }
 .transitionArea .btn_hover span:nth-of-type(3) {
-    transition-delay: .075s;
+    transition-delay: .10s;
 }
 .transitionArea .btn_hover span:nth-of-type(4) {
-    transition-delay: .1s;
+    transition-delay: .15s;
 }
 
 

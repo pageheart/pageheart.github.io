@@ -53,7 +53,8 @@ var insuranceContractNo = new Vue({
     el: '#insuranceContractNo',
     data: {
         insNo: '',
-        inputDate: (new Date()).getFullYear() + '' + (((new Date()).getMonth()+1) < 10 ? '0'+((new Date()).getMonth()+1) : ((new Date()).getMonth()+1)) + ((new Date()).getMonth() < 10 ? '0'+(new Date()).getMonth() : (new Date()).getMonth())
+        inputDate: (new Date()).getFullYear() + '' + (((new Date()).getMonth()+1) < 10 ? '0'+((new Date()).getMonth()+1) : ((new Date()).getMonth()+1)) + ((new Date()).getMonth() < 10 ? '0'+(new Date()).getMonth() : (new Date()).getMonth()),
+        fetchResultVal : ''
     },
     methods: {
         sendScan: function () {
@@ -83,7 +84,7 @@ var insuranceContractNo = new Vue({
                         throw new Error('Network response was not ok');
                     })
                     .then((json) => {
-                        console.log(json);
+                        this.fetchResultVal = json;
                     })
                     .catch((error) => {
                         console.log(error);

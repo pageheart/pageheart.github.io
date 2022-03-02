@@ -173,12 +173,13 @@
           <input v-model="message">
         </div>
         
-        <div id="insuranceContractNo">
-            <p>계약번호</p>
-            <input v-model="insNo" ref="insNo">
-            <p>날짜</p>
-            <input v-model="inputDate" ref="inputDate">
-            <button @click="sendScan">ajaxSend</button>
+        <div id="insuranceContractNo" style="border:solid 1px #fff">
+          <p>계약번호</p>
+          <input v-model="insNo" ref="insNo">
+          <p>날짜</p>
+          <input v-model="inputDate" ref="inputDate">
+          <button @click="sendScan">ajaxSend</button>
+          <div v-model="fetchResultVal"></div>
         </div>
 
         <script src="vue/index.js"></script>

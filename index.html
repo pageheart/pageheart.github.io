@@ -179,7 +179,7 @@
           <p>날짜</p>
           <input v-model="inputDate" ref="inputDate">
           <button @click="sendScan">ajaxSend</button>
-          <div v-model="fetchResultVal"></div>
+          <div v-if="fetchResultVal">{{fetchResultVal}}</div>
         </div>
 
         <script src="vue/index.js"></script>

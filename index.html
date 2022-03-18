@@ -95,7 +95,7 @@
     function mainMenuClick(classNm) {
         Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
         Array.from(document.getElementsByClassName(classNm)).forEach(e=>e.style.display = 'block');
-        settingEvnt();
+        document.querySelector(".mobile-menu").click();
     }
 
     </script>

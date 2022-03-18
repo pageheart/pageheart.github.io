@@ -96,8 +96,8 @@
     });
 
     function mainMenuClick(obj,classNm) {
-        console.log(obj.classList);
         document.querySelectorAll(".menu .nav-link.active").forEach(e=>e.classList.remove("active"));
+        obj.classList.add("active");
         Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
         Array.from(document.getElementsByClassName(classNm)).forEach(e=>e.style.display = 'block');
         document.querySelector(".mobile-menu").click();

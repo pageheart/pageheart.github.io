@@ -93,9 +93,6 @@
     $(document).ready(function() {
         Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
         setUser();
-        const bootstrapModal = new bootstrap.Modal(document.getElementById('staticBackdrop'),{
-          keyboard: true
-        });
     });
 
     function mainMenuClick(obj,classNm) {
@@ -107,6 +104,9 @@
     }
       
     function bsAlert(msg,btnMsg) {
+        let bootstrapModal = new bootstrap.Modal(document.getElementById('staticBackdrop'),{
+          keyboard: true
+        });
         bootstrapModal._dialog.querySelectorAll(".modal-body")[0].innerText = msg;
         bootstrapModal._dialog.querySelectorAll(".btn-primary")[0].style.display = "none";
         if(btnMsg) bootstrapModal._dialog.querySelectorAll(".btn-secondary")[0].innerText = btnMsg;

@@ -88,8 +88,14 @@
     }
 
     $(document).ready(function() {
-      setUser();
+        Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
+        setUser();
     });
+
+    function divShow(classNm) {
+        Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
+        Array.from(document.getElementsByClassName(classNm)).forEach(e=>e.style.display = 'block');
+    }
 
     </script>
     <script language="javascript" src="./js/toast.js"></script>
@@ -101,6 +107,10 @@
             <nav></nav>
             <div class="menu">
                 방문해주셔서 감사합니다. 'ㅡ'/
+                <ul>
+                    <li onclick="divShow('javascriptArea')">javascript 연습장</li>
+                    <li onclick="divShow('vueArea')">vue 연습장</li>
+                </ul>
             </div>
         </header>
     </div>
@@ -120,93 +130,95 @@
       </div>
     </div>
     <div>
-      <ul id="test" class="title_header nav_list">
-        <script id="item" type="text/html">
-          {{if show}}
-            <li><em>${name}</em> (${explanation})</li>
-          {{/if}}
-        </script>
-        -연습장-
-      </ul>
-      
-      <div class="transitionArea">
-        <a href="https://github.com/pageheart" class="btn_hover red">
-          <span>P</span>
-          <span>A</span>
-          <span>G</span>
-          <span>E</span>
-        </a>
-      </div>
+        <div class="javascriptArea mainDiv">
+            <ul id="test" class="title_header nav_list">
+                <script id="item" type="text/html">
+                {{if show}}
+                    <li><em>${name}</em> (${explanation})</li>
+                {{/if}}
+                </script>
+                -연습장-
+            </ul>
+            
+            <div class="transitionArea">
+                <a href="https://github.com/pageheart" class="btn_hover red">
+                <span>P</span>
+                <span>A</span>
+                <span>G</span>
+                <span>E</span>
+                </a>
+            </div>
+        </div>
          
-      <div class="vueArea">
-        vue.js TEST 영역
+        <div class="vueArea mainDiv">
+            vue.js TEST 영역
 
-        <div id="app">
-            {{ message }}
-        </div>
+            <div id="app">
+                {{ message }}
+            </div>
 
-        <div id="app-2">
-          <span v-bind:title="message">
-            Hover your mouse over me for a few seconds
-            to see my dynamically bound title!
-          </span>
-        </div>
+            <div id="app-2">
+            <span v-bind:title="message">
+                Hover your mouse over me for a few seconds
+                to see my dynamically bound title!
+            </span>
+            </div>
 
-        <div id="app-3">
-          <span v-if="seen">ture is show</span>
-          <select v-model="seen">
-            <option :value="true">true</option>
-            <option :value="false">false</option>
-          </select>
-        </div>
+            <div id="app-3">
+            <span v-if="seen">ture is show</span>
+            <select v-model="seen">
+                <option :value="true">true</option>
+                <option :value="false">false</option>
+            </select>
+            </div>
 
-        <div id="app-4">
-          <ol>
-            <li v-for="todo in todos">
-              {{ todo.text }}
-            </li>
-          </ol>
-        </div>
+            <div id="app-4">
+            <ol>
+                <li v-for="todo in todos">
+                {{ todo.text }}
+                </li>
+            </ol>
+            </div>
 
-        <div id="app-5">
-          <p>{{ message }}</p>
-          <button v-on:click="reverseMessage">Reverse Message</button>
-        </div>
+            <div id="app-5">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+            </div>
 
-        <div id="app-6">
-          <p>{{ message }}</p>
-          <input v-model="message">
-        </div>
-        
-        <div id="insuranceContractNo" style="border:solid 1px #fff">
-          <p>계약번호</p>
-          <input v-model="insNo" ref="insNo">
-          <p>날짜</p>
-          <input v-model="inputDate" ref="inputDate">
-          <button @click="sendScan">ajaxSend</button>
-          <div v-if="fetchResultVal">{{fetchResultVal}}</div>
-        </div>
+            <div id="app-6">
+            <p>{{ message }}</p>
+            <input v-model="message">
+            </div>
+            
+            <div id="insuranceContractNo" style="border:solid 1px #fff">
+            <p>계약번호</p>
+            <input v-model="insNo" ref="insNo">
+            <p>날짜</p>
+            <input v-model="inputDate" ref="inputDate">
+            <button @click="sendScan">ajaxSend</button>
+            <div v-if="fetchResultVal">{{fetchResultVal}}</div>
+            </div>
 
-        <script src="vue/index.js"></script>
+            <script src="vue/index.js"></script>
 
-        <div id="app-7">
-          <ol>
-            <!--
-              Now we provide each todo-item with the todo object
-              it's representing, so that its content can be dynamic.
-              We also need to provide each component with a "key",
-              which will be explained later.
-            -->
-            <todo-item
-              v-for="item in groceryList"
-              v-bind:todo="item"
-              v-bind:key="item.id"
-            ></todo-item>
-          </ol>
+            <div id="app-7">
+            <ol>
+                <!--
+                Now we provide each todo-item with the todo object
+                it's representing, so that its content can be dynamic.
+                We also need to provide each component with a "key",
+                which will be explained later.
+                -->
+                <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+                ></todo-item>
+            </ol>
         </div>
 
         <script src="vue/component.js"></script>
-      </div>
+        </div>
     </div>
   </body>
 </html> 

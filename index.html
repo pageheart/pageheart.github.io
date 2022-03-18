@@ -31,6 +31,7 @@
                     let aTag = document.createElement("a");
                     let aNode = document.createTextNode(e.title);
                     aTag.setAttribute("href","#n");
+                    aTag.setAttribute("class","nav-link");
                     aTag.addEventListener('click',() => location.href = e.link);
                     aTag.appendChild(aNode);
                     document.querySelectorAll("header nav")[0].appendChild(aTag);
@@ -107,12 +108,12 @@
     <div class="header">
         <header>
             <button type="button" class="mobile-menu"><span>메뉴</span></button>
-            <nav></nav>
+            <nav class="nav"></nav>
             <div class="menu">
                 방문해주셔서 감사합니다. 'ㅡ'/
-                <ul>
-                    <li><a href="#none" onclick="mainMenuClick('javascriptArea')">javascript 연습장</a></li>
-                    <li><a href="#none" onclick="mainMenuClick('vueArea')">vue 연습장</a></li>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li><a class="nav-link text-white" href="#none" onclick="mainMenuClick('javascriptArea')">javascript 연습장</a></li>
+                    <li><a class="nav-link text-white" href="#none" onclick="mainMenuClick('vueArea')">vue 연습장</a></li>
                 </ul>
             </div>
         </header>

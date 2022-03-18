@@ -93,6 +93,9 @@
     $(document).ready(function() {
         Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
         setUser();
+        const bootstrapModal = new bootstrap.Modal(document.getElementById('staticBackdrop'),{
+          keyboard: true
+        });
     });
 
     function mainMenuClick(obj,classNm) {
@@ -103,16 +106,11 @@
         document.querySelector(".mobile-menu").click();
     }
       
-    var bootstrapModal = new bootstrap.Modal(document.getElementById('staticBackdrop'),{
-      keyboard: true
-    });
     function bsAlert(msg,btnMsg) {
         bootstrapModal._dialog.querySelectorAll(".modal-body")[0].innerText = msg;
         bootstrapModal._dialog.querySelectorAll(".btn-primary")[0].style.display = "none";
         if(btnMsg) bootstrapModal._dialog.querySelectorAll(".btn-secondary")[0].innerText = btnMsg;
         bootstrapModal.show();
-        bootstrapModal._dialog.querySelectorAll(".btn-secondary")[0].addEventListener('click',()=>myModal.hide());
-        bootstrapModal._dialog.querySelectorAll(".btn-close")[0].addEventListener('click',()=>myModal.hide());
     }
 
     </script>

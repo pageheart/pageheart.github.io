@@ -92,9 +92,10 @@
         setUser();
     });
 
-    function divShow(classNm) {
+    function mainMenuClick(classNm) {
         Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
         Array.from(document.getElementsByClassName(classNm)).forEach(e=>e.style.display = 'block');
+        settingEvnt();
     }
 
     </script>
@@ -108,8 +109,8 @@
             <div class="menu">
                 방문해주셔서 감사합니다. 'ㅡ'/
                 <ul>
-                    <li onclick="divShow('javascriptArea')">javascript 연습장</li>
-                    <li onclick="divShow('vueArea')">vue 연습장</li>
+                    <li><a href="#none" onclick="mainMenuClick('javascriptArea')">javascript 연습장</a></li>
+                    <li><a href="#none" onclick="mainMenuClick('vueArea')">vue 연습장</a></li>
                 </ul>
             </div>
         </header>

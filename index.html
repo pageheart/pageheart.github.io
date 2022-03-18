@@ -95,7 +95,9 @@
         setUser();
     });
 
-    function mainMenuClick(classNm) {
+    function mainMenuClick(obj,classNm) {
+        console.log(obj);
+        document.querySelectorAll(".menu .nav-link.active")[0].classList.remove("active")
         Array.from(document.getElementsByClassName("mainDiv")).forEach(e=>e.style.display = 'none');
         Array.from(document.getElementsByClassName(classNm)).forEach(e=>e.style.display = 'block');
         document.querySelector(".mobile-menu").click();
@@ -111,9 +113,10 @@
             <nav class="nav"></nav>
             <div class="menu">
                 방문해주셔서 감사합니다. 'ㅡ'/
+                <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li><a class="nav-link text-white" href="#none" onclick="mainMenuClick('javascriptArea')">javascript 연습장</a></li>
-                    <li><a class="nav-link text-white" href="#none" onclick="mainMenuClick('vueArea')">vue 연습장</a></li>
+                    <li><a class="nav-link text-white" href="#none" onclick="mainMenuClick(this,'javascriptArea')">javascript 연습장</a></li>
+                    <li><a class="nav-link text-white" href="#none" onclick="mainMenuClick(this,'vueArea')">vue 연습장</a></li>
                 </ul>
             </div>
         </header>

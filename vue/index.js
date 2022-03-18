@@ -59,7 +59,7 @@ var insuranceContractNo = new Vue({
     methods: {
         sendScan: function () {
             if(this.insNo == '') {
-                alert("계약번호를 입력 해주세요.");
+                bsAlert("계약번호를 입력 해주세요.");
                 this.$refs.insNo.focus();
             }
             else if(this.inputDate == '') {

@@ -162,6 +162,10 @@ button:focus {
     transition-delay: .15s;
 }
 
+.mainDiv {
+    display:none;
+}
+
 
 #dimmed {
     position: fixed;

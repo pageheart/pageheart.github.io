@@ -14,17 +14,20 @@
     <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/dark-hive/jquery-ui.css">
     
     <script type="text/javascript">
+    window.addEventListener("load", function(){
+      console.log("window load");
+    });
     window.addEventListener("DOMContentLoaded", function(){
-        console.log("DOMContentLoaded");
-        document.querySelectorAll("input").forEach(e=>{
-            if(e.getAttribute("maxlength")) {
-                e.addEventListener("keyup", (ev)=>{
-                    if(ev.target.value.length > e.getAttribute("maxlength")) {
-                        ev.target.value = ev.target.value.substr(0,e.getAttribute("maxlength"));
-                    }
-                });
-            }
-        });
+      console.log("DOMContentLoaded");
+      document.querySelectorAll("input").forEach(e=>{
+          if(e.getAttribute("maxlength")) {
+              e.addEventListener("keyup", (ev)=>{
+                  if(ev.target.value.length > e.getAttribute("maxlength")) {
+                      ev.target.value = ev.target.value.substr(0,e.getAttribute("maxlength"));
+                  }
+              });
+          }
+      });
     });
     console.log('RxJS included?', !!Rx);
     var menu = [

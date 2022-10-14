@@ -1,0 +1,68 @@
+<!DOCTYPE>
+<HTML>
+<header>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</header>
+<body>
+    <div id="insuranceContractNo">
+        <p>계약번호</p>
+        <input v-model="insNo" ref="insNo" placeholder="L00000000000">
+        <p>날짜</p>
+        <input v-model="inputDate" ref="inputDate">
+        <button @click="sendScan">태블릿 스캔하기</button>
+        <div style="margin-top:20px;">
+            <svg viewBox="0 0 17 28" fill="currentColor" class="css-136y7u9 e7g9e4b1" style="opacity: 1; width: 2.2rem;"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-161.000000, -261.000000)" fill="#000000" fill-rule="nonzero"><path d="M174.036196,261.006458 C169.240157,260.7957 169.446192,265.813713 169.446192,265.813713 L169.446192,265.813713 C169.446192,265.813713 169.650592,260.7957 164.853736,261.006458 C162.799108,261.095846 158.90897,263.624124 162.399302,268.982467 C163.303567,270.369207 166.275541,274.491704 168.056273,276.946996 L164.843107,287.296291 L164.197203,287.296291 L164.197203,288.929872 L167.467602,288.929872 L167.467602,287.296291 L166.821698,287.296291 L167.721057,284.3916 L171.161516,284.3916 L172.060876,287.296291 L171.41579,287.296291 L171.41579,288.929872 L174.686188,288.929872 L174.686188,287.296291 L174.040284,287.296291 L170.834476,276.946176 C172.615208,274.490884 175.587183,270.369207 176.49063,268.982467 C179.98178,263.624124 176.089189,261.095846 174.036196,261.006458 Z M168.23124,282.758019 L169.444557,278.850381 L170.657057,282.758019 L168.23124,282.758019 Z" v-bind:fill="heartLogoColor"></path></g></g></svg>
+        </div>        
+    </div>
+    <script type="text/javascript">
+        var insuranceContractNo = new Vue({
+            el: '#insuranceContractNo',
+            data: {
+                insNo: '',
+                inputDate: (new Date()).getFullYear() + '' + (((new Date()).getMonth()+1) < 10 ? '0'+((new Date()).getMonth()+1) : ((new Date()).getMonth()+1)) + ((new Date()).getDate() < 10 ? '0'+(new Date()).getDate() : (new Date()).getDate()),
+                heartLogoColor : '#FF0000',
+                loadingTimer : undefined
+            },
+            methods: {
+                sendScan: function () {
+                    if(this.insNo == '') {
+                        alert("계약번호를 입력 해주세요.");
+                        this.$refs.insNo.focus();
+                    }
+                    else if(this.inputDate == '') {
+                        alert("날짜를 입력 해주세요.");
+                        this.$refs.inputDate.focus();
+                    }
+                    else {
+                        this.loadingTimer = setInterval(this.heartLogoColorChange,1000);
+                        fetch('https://sps.hi.co.kr/reqClient/ConvertImg?documentId=ES-'+this.insNo+'&datePath='+this.inputDate+'&subscriptionNumber='+this.insNo+'&width=1000')
+                            .then((response) => {
+                                console.log(response);
+                                if(response.ok){
+                                    return response.status;
+                                }
+                                throw new Error('Network response was not ok');
+                            })
+                            .then((status) => {
+                                clearInterval(this.loadingTimer);
+                                if(status == 200) alert("처리에 성공하셨습니다.");
+                                else alert("처리에 실패하였습니다.\n["+status+"]");
+                                console.log(status);
+                            })
+                            .catch((error) => {
+                                clearInterval(this.loadingTimer);
+                                console.log(error);
+                            })
+                    }
+                },
+                heartLogoColorChange: function() {
+                    if(this.heartLogoColor == '#FF0000')
+                        this.heartLogoColor = '#000000';
+                    else 
+                        this.heartLogoColor = '#FF0000';
+                }
+            }
+        })
+    </script>
+</body>
+</HTML>

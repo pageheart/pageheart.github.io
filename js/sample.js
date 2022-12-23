@@ -104,8 +104,9 @@ function addTagInHtml()  {
         ,sumMoney : 90000
     }];
     let tagData;
+    let setDate = 202212;
     voList.forEach(vo => {
-        tagData = htmlTagFnc(202212, vo);
+        tagData = htmlTagFnc(setDate--, vo);
     });
     return tagData;
 }

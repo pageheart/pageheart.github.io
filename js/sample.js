@@ -1,3 +1,4 @@
+//클로저 샘플
 function dateListHtmlTagSet(year) {
 	var sisangsafebox = document.createElement("div");
 	sisangsafebox.className = "card-ty-sisangsafebox";

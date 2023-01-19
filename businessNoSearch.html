@@ -23,9 +23,18 @@
 
     var statusSearch = {
       searchData : ()=>{
-        return document.getElementById("BusinessNoTextarea").value.replace(/-/g,'').split("\n");
+        if(document.getElementById("BusinessNoTextarea").value.trim() == '') {
+          return '';
+        }
+        else {
+          return document.getElementById("BusinessNoTextarea").value.replace(/-/g,'').split("\n");
+        }
       },
       ajaxCall : ()=>{
+        for(const items of document.querySelectorAll(".container div")) {
+          if(!items.classList.contains('subject')) items.remove();
+        }
+        
         let searchData = statusSearch.searchData();
         if(searchData.length > 0) {
           if(searchData.length > 100) {
@@ -56,17 +65,61 @@
         divTag.className = "item";
         divTag.append(document.createTextNode(txt));
         document.querySelector(".container").append(divTag);
+      },
+      searchListInit : ()=>{
+        document.querySelector(".container div")
       }
     }
     </script>
     <style>
+      .header {
+        margin: 10px 0 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        height: 100px;
+        align-items: center;
+      }
       .container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        border: 3px solid currentColor;
+        border-radius: 5px;
+        font-size: 1.2em;
+        line-height: 1.4;
+        background: #ffe300;
+        transition: 0.5s;
+      }
+      .item {
+        margin: 3px;
+        padding: 2px;
+        border: 3px solid currentColor;
+        border-radius: 3px;
+        font-weight: bold;
+        background: #26ab1c;
+        transition: 0.4s;
+      }
+      .item.subject {
+        background: #ff6937;
       }
       a {
         text-decoration: none;
       }
+      .transitionArea .btn_hover {
+        display: flex;
+        align-items: center;
+        width: 115px;
+        height: 40px;
+        padding-left: 25px;
+        color: #fff;
+        font-weight: bold;
+        box-sizing: border-box;
+        border-radius: 25px;
+      }
+
+      .transitionArea .btn_hover:hover span {
+        top: -3px;
+      }
+
       .transitionArea .btn_hover.red {
         background:#ff2e62;
       }
@@ -90,48 +143,32 @@
       .transitionArea .btn_hover span:nth-of-type(6) {
         transition-delay: .25s;
       }
-      .transitionArea .btn_hover {
-        display: flex;
-        align-items: center;
-        width: 115px;
-        height: 40px;
-        padding-left: 19px;
-        color: #fff;
-        font-size: 13px;
-        font-weight: bold;
-        box-sizing: border-box;
-        border-radius: 25px;
-      }
     </style>
   </head>
   <body>
     <div>
-      <div style="float:left; margin-right:20px;">
-        사업자등록번호 : 
-        <textarea id="BusinessNoTextarea"></textarea>
-      </div>
-      <div class="transitionArea">
-          <a href="javascript:statusSearch.ajaxCall()" class="btn_hover red">
-          <span>S</span>
-          <span>E</span>
-          <span>A</span>
-          <span>R</span>
-          <span>C</span>
-          <span>H</span>
-          </a>
+      <div class="header">
+        <div style="margin:10px 20px;">
+          <span style="font-size: 25px;vertical-align: top;">사업자등록번호 : </span>
+          <textarea id="BusinessNoTextarea"></textarea>
+        </div>
+        <div class="transitionArea">
+            <a href="javascript:statusSearch.ajaxCall()" class="btn_hover red">
+            <span>S</span>
+            <span>E</span>
+            <span>A</span>
+            <span>R</span>
+            <span>C</span>
+            <span>H</span>
+            </a>
+        </div>
       </div>
       <div>
         <h3>사업자등록상태조회</h3>
         <div class="container">
-          <div class="item">사업자등록번호</div>
-          <div class="item">사업자등록상태</div>
-          <div class="item">조회기준일자</div>
-          <div class="item">1</div>
-          <div class="item">2</div>
-          <div class="item">3</div>
-          <div class="item">1</div>
-          <div class="item">2</div>
-          <div class="item">3</div>
+          <div class="item subject">사업자등록번호</div>
+          <div class="item subject">사업자등록상태</div>
+          <div class="item subject">조회기준일자</div>
         </div>
       </div>
     </div>

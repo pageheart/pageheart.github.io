@@ -48,9 +48,23 @@
                 if(res.status_code === 'OK') {
                     console.log(res);
                     res.data.forEach(d=>{
-                        statusSearch.divTagAdd(d.b_no.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3'));
-                        statusSearch.divTagAdd(d.tax_type);
-                        statusSearch.divTagAdd(new Date().toLocaleDateString("ko-kr"));
+                        let sttStr = '';
+                        let classNm = '';
+                        if(d.b_stt.indexOf('폐업') >= 0) {
+                          sttStr = d.b_stt+'('+d.end_dt.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')+')';
+                          classNm = 'dangerous';
+                        }
+                        else {
+                          sttStr = d.b_stt
+                        }
+
+                        if(d.tax_type.indexOf('일반과세자') < 0) {
+                          classNm = 'dangerous';
+                        }
+                        statusSearch.divTagAdd(d.b_no.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3'),classNm);
+                        statusSearch.divTagAdd(sttStr, classNm);
+                        statusSearch.divTagAdd(d.tax_type, classNm);
+                        statusSearch.divTagAdd(new Date().toLocaleDateString("ko-kr"),classNm);
                     });
                 }
             });
@@ -60,9 +74,9 @@
           alert("사업자등록번호를 입력 해 주세요.");
         }
       },
-      divTagAdd : (txt)=>{
+      divTagAdd : (txt, classNm)=>{
         let divTag = document.createElement("div");
-        divTag.className = "item";
+        divTag.className = "item " + (classNm?classNm:'');
         divTag.append(document.createTextNode(txt));
         document.querySelector(".container").append(divTag);
       },
@@ -81,7 +95,7 @@
       }
       .container {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         border: 3px solid currentColor;
         border-radius: 5px;
         font-size: 1.2em;
@@ -100,6 +114,9 @@
       }
       .item.subject {
         background: #ff6937;
+      }
+      .item.dangerous {
+        background: #ff0000;
       }
       a {
         text-decoration: none;
@@ -167,6 +184,7 @@
         <h3>사업자등록상태조회</h3>
         <div class="container">
           <div class="item subject">사업자등록번호</div>
+          <div class="item subject">상태</div>
           <div class="item subject">사업자등록상태</div>
           <div class="item subject">조회기준일자</div>
         </div>

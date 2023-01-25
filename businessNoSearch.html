@@ -41,6 +41,8 @@
             alert("한번에 최대 100개까지만 조회 가능 합니다.");
           }
           else {
+            while(searchData.some((e,i)=>{ if(e==''){ searchData.splice(i,1); return true;} })) { };
+            searchData.forEach((e,i)=>searchData.splice(i,1,e.trim()));
             ajaxCall('https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=3hRZAJC%2FG0MrVFquB7UvOGOhlw1%2FRSctGxSnFV5rs39ahaQJzfKMcEinWFv2%2Fke5zQD%2B2lH5jm3eiF51EkHCEQ%3D%3D'
                 , {
                 'b_no': searchData

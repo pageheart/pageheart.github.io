@@ -50,17 +50,32 @@
                     res.data.forEach(d=>{
                         let sttStr = '';
                         let classNm = '';
-                        if(d.b_stt.indexOf('폐업') >= 0) {
-                          sttStr = d.b_stt+'('+d.end_dt.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')+')';
-                          classNm = 'dangerous';
+
+                        // 01: 계속사업자,
+                        // 02: 휴업자,
+                        // 03: 폐업자
+                        switch(d.b_stt_cd) {
+                          case '02' : sttStr = d.b_stt; classNm = 'dangerous'; break;
+                          case '03' : sttStr = d.b_stt+'('+d.end_dt.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')+')'; classNm = 'dangerous'; break;
+                          default : sttStr = d.b_stt;
                         }
-                        else {
-                          sttStr = d.b_stt
+                        
+                        // 01:부가가치세 일반과세자,
+                        // 02:부가가치세 간이과세자,
+                        // 03:부가가치세 과세특례자,
+                        // 04:부가가치세 면세사업자,
+                        // 05:수익사업을 영위하지 않는 비영리법인이거나 고유번호가 부여된 단체,국가기관 등,
+                        // 06:고유번호가 부여된 단체,
+                        // 07:부가가치세 간이과세자(세금계산서 발급사업자)
+                        if(d.tax_type_cd != '01') {
+                          classNm = 'dangerous';
                         }
 
-                        if(d.tax_type.indexOf('일반과세자') < 0) {
+                        //단위과세전환폐업여부(Y,N)
+                        if(d.utcc_yn == 'Y') {
                           classNm = 'dangerous';
                         }
+
                         statusSearch.divTagAdd(d.b_no.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3'),classNm);
                         statusSearch.divTagAdd(sttStr, classNm);
                         statusSearch.divTagAdd(d.tax_type, classNm);

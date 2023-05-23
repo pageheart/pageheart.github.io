@@ -290,7 +290,7 @@
       </div>
     </div>
     <div>
-    <div class="container">
+      <div class="container">
             <div style="width:40%">
                 <ul id="myUL">
                     <li>Water</li>
@@ -327,6 +327,88 @@
                         Item 4
                     </li>
                 </ul>
+            </div>
+        </div>
+        <style>
+            .tooltip_green {
+                position: absolute;
+                right: 0;
+                top: -66px;
+                padding: 13px 24px 11px 14px;
+                background-color: #00c932;
+                color: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+                -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .tooltip_green .btn_close {
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                width: 15px;
+                height: 15px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                border: 0 none;
+                background-color: transparent;
+            }
+
+            .tooltip_green:after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 71%;
+                margin-left: -4px;
+                width: 0;
+                height: 0;
+                border-top: 6px solid #00c932;
+                border-right: 5px solid transparent;
+                border-left: 5px solid transparent;
+            }
+
+            .blind {
+                position: absolute;
+                clip: rect(0 0 0 0);
+                width: 1px;
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+            }
+
+            .tooltip_green .btn_close:before,
+            .tooltip_green .btn_close:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 15px;
+                height: 2px;
+                margin-top: -2px;
+                margin-left: -7px;
+                background-color: #fff;
+            }
+
+            .tooltip_green .btn_close:before {
+                transform: rotate(-45deg);
+            }
+
+            .tooltip_green .btn_close:after {
+                transform: rotate(45deg);
+            }
+        </style>
+        <div style="position: relative; border:red 1px solid; width: 50%;margin-top: 100px;">
+            <div class="tooltip_green">
+                <p>구매확정 및 리뷰 작성 완료시 포인트 최대 <span class="sum"><b>3,850</b>원</span>!</p>
+                <button type="button" class="btn_close"><span class="blind">닫기</span></button>
             </div>
         </div>
         <div class="jqueryArea mainDiv">

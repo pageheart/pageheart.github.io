@@ -405,12 +405,23 @@
                 transform: rotate(45deg);
             }
         </style>
-        <div style="position: relative; border:red 1px solid; width: 50%;margin-top: 100px;">
-            <div class="tooltip_green">
+        <script type="text/javascript">
+            function tooltipOpen(THIS) {
+                console.log(THIS.getBoundingClientRect());
+                let id = THIS.attributes.id.nodeValue;
+                let tooltipDoc = document.querySelector('[rel='+id+']');
+                tooltipDoc.classList.remove("nested");
+                tooltipDoc.classList.add("active");
+            }
+        </script>
+        <div style="position: relative; border:red 1px solid; width: 50%;margin-top: 100px;height: 50px;">
+            <div class="tooltip_green nested" rel="question">
                 <p>구매확정 및 리뷰 작성 완료시 포인트 최대 <span class="sum"><b>3,850</b>원</span>!</p>
                 <button type="button" class="btn_close"><span class="blind">닫기</span></button>
             </div>
+            <button id="question" onclick="tooltipOpen(this)">?</button>
         </div>
+     
         <div class="jqueryArea mainDiv">
             <ul id="test" class="title_header nav_list">
                 <script id="item" type="text/html">

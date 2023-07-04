@@ -116,3 +116,17 @@ function numberInit(num) {
     if(isNaN(Number(num))) num = 0;
     return Number(num);
 }
+
+//observe 예시 
+let target = document.getElementById("MOprogressLayer");
+
+var observer = new MutationObserver(mutations => { 
+		mutations.forEach(mutation=> {
+			console.log(mutation.target.style.display);
+			document.getElementById("MOprogressLayerDim").style.display = mutation.target.style.display;
+		}) 
+	});
+
+var options = { attributes:true, attributeFilter:['style'] };
+
+observer.observe(target, options);

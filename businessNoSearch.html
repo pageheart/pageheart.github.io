@@ -86,7 +86,7 @@
                               classNm = 'dangerous';
                             }
     
-                            statusSearch.divTagAdd(++seqNo,classNm);
+                            statusSearch.divTagAdd(++seqNo,'No');
                             statusSearch.divTagAdd(d.b_no.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3'),classNm);
                             statusSearch.divTagAdd(sttStr, classNm);
                             statusSearch.divTagAdd(d.tax_type, classNm);
@@ -134,11 +134,17 @@
         border: 3px solid currentColor;
         border-radius: 3px;
         font-weight: bold;
-        background: #26ab1c;
+        background: #4fdb44;
         transition: 0.4s;
+      }
+      .item.No {
+        background: #ffffff;
       }
       .item.subject {
         background: #ff6937;
+      }
+      .item.subject.No {
+        background: #ffffff;
       }
       .item.dangerous {
         background: #ff0000;
@@ -208,7 +214,7 @@
       <div>
         <h3>사업자등록상태조회</h3>
         <div class="container">
-          <div class="item subject">No.</div>
+          <div class="item subject No">No.</div>
           <div class="item subject">사업자등록번호</div>
           <div class="item subject">상태</div>
           <div class="item subject">사업자등록상태</div>

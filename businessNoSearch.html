@@ -37,55 +37,64 @@
         
         let searchData = statusSearch.searchData();
         if(searchData.length > 0) {
-          if(searchData.length > 100) {
-            alert("한번에 최대 100개까지만 조회 가능 합니다.");
-          }
-          else {
+          //if(searchData.length > 100) {
+          //  alert("한번에 최대 100개까지만 조회 가능 합니다.");
+          //}
+          //else {
             while(searchData.some((e,i)=>{ if(e==''){ searchData.splice(i,1); return true;} })) { };
             searchData.forEach((e,i)=>searchData.splice(i,1,e.trim()));
-            ajaxCall('https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=3hRZAJC%2FG0MrVFquB7UvOGOhlw1%2FRSctGxSnFV5rs39ahaQJzfKMcEinWFv2%2Fke5zQD%2B2lH5jm3eiF51EkHCEQ%3D%3D'
-                , {
-                'b_no': searchData
-              }).then((res) => { // JSON 데이터가 `data.json()` 호출에 의해 파싱됨
-                if(res.status_code === 'OK') {
-                    console.log(res);
-                    res.data.forEach(d=>{
-                        let sttStr = '';
-                        let classNm = '';
-
-                        // 01: 계속사업자,
-                        // 02: 휴업자,
-                        // 03: 폐업자
-                        switch(d.b_stt_cd) {
-                          case '02' : sttStr = d.b_stt; classNm = 'dangerous'; break;
-                          case '03' : sttStr = d.b_stt+'('+d.end_dt.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')+')'; classNm = 'dangerous'; break;
-                          default : sttStr = d.b_stt;
-                        }
-                        
-                        // 01:부가가치세 일반과세자,
-                        // 02:부가가치세 간이과세자,
-                        // 03:부가가치세 과세특례자,
-                        // 04:부가가치세 면세사업자,
-                        // 05:수익사업을 영위하지 않는 비영리법인이거나 고유번호가 부여된 단체,국가기관 등,
-                        // 06:고유번호가 부여된 단체,
-                        // 07:부가가치세 간이과세자(세금계산서 발급사업자)
-                        if(d.tax_type_cd != '01') {
-                          classNm = 'dangerous';
-                        }
-
-                        //단위과세전환폐업여부(Y,N)
-                        if(d.utcc_yn == 'Y') {
-                          classNm = 'dangerous';
-                        }
-
-                        statusSearch.divTagAdd(d.b_no.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3'),classNm);
-                        statusSearch.divTagAdd(sttStr, classNm);
-                        statusSearch.divTagAdd(d.tax_type, classNm);
-                        statusSearch.divTagAdd(new Date().toLocaleDateString("ko-kr"),classNm);
-                    });
-                }
+            searchData = searchData.filter((element, index) => {
+                return searchData.indexOf(element) === index;
             });
-          }
+            let tempArr = [];
+            while(searchData.length / 100 > 0) {
+              tempArr = searchData.splice(0,100);
+              if(tempArr.length > 0) {
+                ajaxCall('https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=3hRZAJC%2FG0MrVFquB7UvOGOhlw1%2FRSctGxSnFV5rs39ahaQJzfKMcEinWFv2%2Fke5zQD%2B2lH5jm3eiF51EkHCEQ%3D%3D'
+                    , {
+                    'b_no': tempArr
+                }).then((res) => { // JSON 데이터가 `data.json()` 호출에 의해 파싱됨
+                    if(res.status_code === 'OK') {
+                        console.log(res);
+                        res.data.forEach(d=>{
+                            let sttStr = '';
+                            let classNm = '';
+    
+                            // 01: 계속사업자,
+                            // 02: 휴업자,
+                            // 03: 폐업자
+                            switch(d.b_stt_cd) {
+                              case '02' : sttStr = d.b_stt; classNm = 'dangerous'; break;
+                              case '03' : sttStr = d.b_stt+'('+d.end_dt.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')+')'; classNm = 'dangerous'; break;
+                              default : sttStr = d.b_stt;
+                            }
+                            
+                            // 01:부가가치세 일반과세자,
+                            // 02:부가가치세 간이과세자,
+                            // 03:부가가치세 과세특례자,
+                            // 04:부가가치세 면세사업자,
+                            // 05:수익사업을 영위하지 않는 비영리법인이거나 고유번호가 부여된 단체,국가기관 등,
+                            // 06:고유번호가 부여된 단체,
+                            // 07:부가가치세 간이과세자(세금계산서 발급사업자)
+                            if(d.tax_type_cd != '01') {
+                              classNm = 'dangerous';
+                            }
+    
+                            //단위과세전환폐업여부(Y,N)
+                            if(d.utcc_yn == 'Y') {
+                              classNm = 'dangerous';
+                            }
+    
+                            statusSearch.divTagAdd(d.b_no.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3'),classNm);
+                            statusSearch.divTagAdd(sttStr, classNm);
+                            statusSearch.divTagAdd(d.tax_type, classNm);
+                            statusSearch.divTagAdd(new Date().toLocaleDateString("ko-kr"),classNm);
+                        });
+                    }
+                });
+              }
+            }
+          //}
         }
         else {
           alert("사업자등록번호를 입력 해 주세요.");
@@ -96,9 +105,6 @@
         divTag.className = "item " + (classNm?classNm:'');
         divTag.append(document.createTextNode(txt));
         document.querySelector(".container").append(divTag);
-      },
-      searchListInit : ()=>{
-        document.querySelector(".container div")
       }
     }
     </script>

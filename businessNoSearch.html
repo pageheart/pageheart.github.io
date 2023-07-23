@@ -50,6 +50,7 @@
             while(searchData.length / 100 > 0) {
               tempArr = searchData.splice(0,100);
               if(tempArr.length > 0) {
+                let seqNo = 0;
                 ajaxCall('https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=3hRZAJC%2FG0MrVFquB7UvOGOhlw1%2FRSctGxSnFV5rs39ahaQJzfKMcEinWFv2%2Fke5zQD%2B2lH5jm3eiF51EkHCEQ%3D%3D'
                     , {
                     'b_no': tempArr
@@ -85,6 +86,7 @@
                               classNm = 'dangerous';
                             }
     
+                            statusSearch.divTagAdd(++seqNo,classNm);
                             statusSearch.divTagAdd(d.b_no.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3'),classNm);
                             statusSearch.divTagAdd(sttStr, classNm);
                             statusSearch.divTagAdd(d.tax_type, classNm);
@@ -118,7 +120,7 @@
       }
       .container {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 100px 1fr 1fr 1fr 1fr;
         border: 3px solid currentColor;
         border-radius: 5px;
         font-size: 1.2em;
@@ -206,6 +208,7 @@
       <div>
         <h3>사업자등록상태조회</h3>
         <div class="container">
+          <div class="item subject">No.</div>
           <div class="item subject">사업자등록번호</div>
           <div class="item subject">상태</div>
           <div class="item subject">사업자등록상태</div>

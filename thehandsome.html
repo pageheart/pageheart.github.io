@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            function searchStylInfoList2(){	
+                var stylCd = document.getElementById("styl_cd_2").value;
+                var callUrl = "https://hsp.handsome.co.kr/fs/retrievePreFltPrc.do?stylCd=";
+                document.getElementById("frame").src=callUrl+stylCd;
+            }
+        </script>
+        <style>
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, img, ins, kbd, q, s, samp,
+            strike, strong, sub, sup, tt, var,
+            b, u, i, center,button,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td,
+            article, aside, canvas, details, embed,
+            figure, figcaption, footer, header, hgroup,
+            menu, nav, output, ruby, section, summary,
+            time, mark, audio, video, textarea, input, select {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                color: #000;
+                vertical-align: baseline;
+                /* a안 img가 들어갈 때 a를 위로 정렬시켜 여백을 없앨 때 사용 */
+            }
+            .on {
+                height: auto;
+            }
+            .code_search03 .search_wrap form {
+                font-size: 0;
+            }
+            .code_search03 .code_search_title {
+                color: #a9866a;
+                font-size: 4.2rem;
+                text-align: center;
+                margin: 54px 0;
+            }
+            .code_search03 .search_wrap {
+                background: #f5f5f5;
+            }
+            .search_top {
+                background: #fae6d7;
+                padding: 30px;
+            }
+            .code_search03 .search_wrap .search_wrap_title {
+                font-size: 3.5rem;
+                color: #3c3c3b;
+                margin-bottom: 20px;
+                font-weight: 100;
+            }
+            .code_search03 .search_wrap form .searchInput {
+                background: #ffffff;
+                font-size: 3rem;
+                color: #3c3c3b;
+                height: 78px;
+                vertical-align: top;
+                text-indent: 15px;
+                border-radius: 10px 0 0 10px;
+                width: 90%;
+                text-transform: uppercase;
+            }
+            .code_search03 .search_wrap form .submit_btn {
+                background-color: #ffffff;
+                padding: 10px;
+                box-sizing: border-box;
+                border-radius: 0 10px 10px 0;
+                width: 10%;
+                display: inline-flex;
+                align-items: center;
+            }
+            .result_table_wrap {
+                padding: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="code_search03 on">
+            <p class="code_search_title">
+                3관 특가/샘플
+            </p>
+            <div class="search_wrap">
+                <div class="search_top">
+                    <p class="search_wrap_title">
+                        스타일 코드
+                    </p>
+                    <form>
+                        <input type="text" id="styl_cd_2" name="searchWord" class="searchInput" placeholder="영문, 숫자 5자리 이상 입력" autocomplete="off" style="text-transform:uppercase;ime-mode:inactive">
+                        <a href="javascript:void(0);" class="submit_btn">
+                            <img src="https://hsp.handsome.co.kr/resources/images/search_icon.png" alt="search_icon" id="btn_srch_flt_prc" onclick="searchStylInfoList2()">
+                        </a>
+                    </form>
+                </div>
+                <div class="result_table_wrap">
+                    <iframe id="frame" style="width: 100%;"></iframe>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

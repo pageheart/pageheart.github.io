@@ -2,7 +2,7 @@
     <head>
         <script type="text/javascript">
             function searchStylInfoList2(){	
-                var stylCd = document.getElementById("styl_cd_2").value;
+                var stylCd = document.getElementById("styl_cd_2").value.trim();
                 var callUrl = "https://hsp.handsome.co.kr/fs/retrievePreFltPrc.do?stylCd=";
                 document.getElementById("frame").src=callUrl+stylCd;
             }
